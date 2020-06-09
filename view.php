@@ -11,39 +11,41 @@ body {
 </style>
 </head>
 <body>
-  <?php
+    <?php
 
-  // DB認証情報取得
-  require_once("get_auth_function.php");
-  GetAuth();
+        // DB認証情報取得
+        require_once("get_auth_function.php");
+        GetAuth();
 
-  // DB認証情報設定
-  $dsn  = "mysql:dbname=$dbname;host=$host;charset=utf8";
-  $driver_options = [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      PDO::ATTR_EMULATE_PREPARES => false,
-  ];
+        // DB認証情報設定
+        $dsn  = "mysql:dbname=$dbname;host=$host;charset=utf8";
+        $driver_options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ];
 
-  // SQL
-  $sql = 'SELECT * FROM
-             `image_data`
-          WHERE
-             `img_name`
-          LIKE :find
-  ';
+        // SQL
+        $sql = 'SELECT * FROM
+                   `image_data`
+                WHERE
+                   `img_name`
+                LIKE :find
+        ';
 
-  // 画像取得
-  $pdo = new PDO($dsn, $user, $pw, $driver_options);
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindValue(':find', $find.'%', PDO::PARAM_STR);
-  $stmt->execute();
+        // 画像検索文字列
+        $find = 'morning';
 
-  // 画像表示
-  echo '<div style="position:absolute; top:200px; left:650px">';
-  //echo '<img src="data:image/png;base64,' . base64_encode($stmt->fetchAll()[0]['img']) . '">';
-  echo '<img src="data:image/jpeg;base64,' . base64_encode($stmt->fetchAll()[0]['img']) . '">';
-  echo '</div>';
-  ?>
+        // 画像取得
+        $pdo = new PDO($dsn, $user, $pw, $driver_options);
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':find', $find.'%', PDO::PARAM_STR);
+        $stmt->execute();
+
+        // 画像表示
+        echo '<div style="position:absolute; top:200px; left:650px">';
+        echo '<img src="data:image/jpeg;base64,' . base64_encode($stmt->fetchAll()[0]['img']) . '">';
+        echo '</div>';
+    ?>
 </body>
 </html>
 	
