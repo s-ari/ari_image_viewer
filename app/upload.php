@@ -33,9 +33,9 @@
         // SQL
         $sql = '
               INSERT INTO
-                  `image_data` (img_name, img)
+                  `image_data` (img, img_name)
               VALUES
-                  (:img_name, :img)
+                  (:img, :img_name)
         ';
       
         // 画像データ取得
@@ -43,8 +43,8 @@
       
         // 画像保存
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':img_name', $_POST['img_name'], PDO::PARAM_STR);
         $stmt->bindValue(':img', $img_data, PDO::PARAM_LOB);
+        $stmt->bindValue(':img_name', $_POST['img_name'], PDO::PARAM_STR);
         $stmt->execute();
     ?>
 </body>
