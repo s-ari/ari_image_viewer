@@ -13,9 +13,10 @@ body {
 <body>
     <?php
 
-        // DB認証情報取得
+        // DB認証情報取得 using GetAuth or GetAuthEnv
         require_once("get_auth_function.php");
-        GetAuth();
+        //GetAuth();
+        GetAuthEnv();
 
         // DB認証情報設定
         $dsn  = "mysql:dbname=$dbname;host=$host;charset=utf8";
@@ -33,7 +34,7 @@ body {
         ';
 
         // 画像検索文字列
-        $find = 'morning';
+        $find = 'sea';
 
         // 画像取得
         $pdo = new PDO($dsn, $user, $pw, $driver_options);
@@ -43,7 +44,7 @@ body {
 
         // 画像表示
         echo '<div style="position:absolute; top:200px; left:650px">';
-        echo '<img src="data:image/jpeg;base64,' . base64_encode($stmt->fetchAll()[0]['img']) . '">';
+        echo '<img src="data:image/jpeg;base64,' . base64_encode($stmt->fetchAll()[0]['img']) . '" width="800" height="500">';
         echo '</div>';
     ?>
 </body>

@@ -16,9 +16,10 @@
   <input type="submit" value="register">
 </form>
     <?php
-        // DB認証情報取得
+        // DB認証情報取得 using GetAuth or GetAuthEnv
         require_once("get_auth_function.php");
-        GetAuth();
+        //GetAuth();
+        GetAuthEnv();
        
         // DB認証情報設定
         $dsn  = "mysql:dbname=$dbname;host=$host;charset=utf8";
