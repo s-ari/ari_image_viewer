@@ -4,4 +4,3 @@ CREATE TABLE `image_db`.`image_data` (
     `img_name` VARCHAR(100) NOT NULL,
     `img` MEDIUMBLOB NOT NULL
 ) ENGINE = InnoDB;
-
