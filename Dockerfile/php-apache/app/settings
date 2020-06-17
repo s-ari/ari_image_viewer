@@ -1,4 +1,4 @@
 dbname=image_db
-host=172.17.0.5
+host=db
 user=root
-pw=secret-pw
+pw=password
