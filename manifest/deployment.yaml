@@ -19,13 +19,25 @@ spec:
         name: aiv-app-4bxmv
         env:
         - name: dbname
-          value: image_db 
+          valueFrom:
+            secretKeyRef:
+              name: db-user
+              key: dbname
         - name: host
-          value: db
+          valueFrom:
+            secretKeyRef:
+              name: db-user
+              key: host
         - name: user
-          value: root
+          valueFrom:
+            secretKeyRef:
+              name: db-user
+              key: user
         - name: pw
-          value: password
+          valueFrom:
+            secretKeyRef:
+              name: db-user
+              key: pw
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -48,4 +60,7 @@ spec:
         name: aiv-db-2sx6l
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: password
+          valueFrom:
+            secretKeyRef:
+              name: db-user
+              key: pw
