@@ -15,8 +15,15 @@ Namespace, deployment and service are made by kustomize.
 cd manifest
 kubectl apply -k ./
 ```
+## 3. Browse web page
+You can check web page following link.
 
-## 3. Select image
+```
+http://EXTERNAL_IP/view.php
+http://EXTERNAL_IP/upload.php
+```
+
+## 4. Select image
 You can change image to edit in viewer.php file. 
 ```
         // 画像検索文字列 sea or sunset
@@ -24,7 +31,7 @@ You can change image to edit in viewer.php file.
 
 ```
 
-## 4. Dockerbuild
+## 5. Dockerbuild
 You have to build after edit php file and push the docker image to your registry.
 ```
 cd $DOCKER_FILE_DIRECTORY
@@ -32,7 +39,7 @@ docker build . -t arimas/aiv_app
 docker push arimas/aiv_app
 ```
 
-## 5. Delete resources
+## 6. Delete resources
 You remove resources after your test from kubernetes.
 ```
 cd manifest
